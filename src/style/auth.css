@@ -1,65 +1,67 @@
+/* =========================================
+   🎨 AUTH PAGE - LOGIN / SIGN UP (Scoped)
+   ========================================= */
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
-* {
-  box-sizing: border-box;
-}
-
-body {
+.auth-page {
   background: linear-gradient(135deg, #CCEAF2 0%, #F4FCBE 100%);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  margin: 0;
   font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
 }
 
-.container {
+/* --- Container --- */
+.auth-page .container {
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25),
-              0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+              0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
   overflow: hidden;
   width: 768px;
   max-width: 100%;
   min-height: 550px;
+  transition: all 0.5s ease;
 }
 
-/* FORM CONTAINERS */
-.form-container {
+/* --- Form Containers --- */
+.auth-page .form-container {
   position: absolute;
   top: 0;
   height: 100%;
   transition: all 0.6s ease-in-out;
 }
 
-.sign-in-container {
+.auth-page .sign-in-container {
   left: 0;
   width: 50%;
   z-index: 2;
 }
 
-.sign-up-container {
+.auth-page .sign-up-container {
   left: 0;
   width: 50%;
   opacity: 0;
   z-index: 1;
 }
 
-/* WHEN ACTIVE */
-.container.right-panel-active .sign-in-container {
+/* --- Active Panel Animation --- */
+.auth-page .container.right-panel-active .sign-in-container {
   transform: translateX(100%);
 }
 
-.container.right-panel-active .sign-up-container {
+.auth-page .container.right-panel-active .sign-up-container {
   transform: translateX(100%);
   opacity: 1;
   z-index: 5;
 }
 
-/* FORM ELEMENTS */
-form {
+/* --- Form Styling --- */
+.auth-page form {
   background: #fff;
   display: flex;
   flex-direction: column;
@@ -70,15 +72,31 @@ form {
   text-align: center;
 }
 
-input {
+.auth-page input,
+.auth-page select.role-select {
   background: #eee;
   border: none;
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
+  border-radius: 5px;
+  outline: none;
+  font-size: 14px;
 }
 
-button {
+.auth-page select.role-select {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+.auth-page select.role-select:focus {
+  border-color: #ff4b2b;
+  box-shadow: 0 0 5px rgba(255, 75, 43, 0.4);
+}
+
+/* --- Buttons --- */
+.auth-page button {
   border-radius: 20px;
   border: 1px solid #ff8abf;
   background: #ff5c6f;
@@ -88,20 +106,25 @@ button {
   padding: 12px 45px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  transition: transform 80ms ease-in;
+  transition: transform 80ms ease-in, background 0.3s ease;
+  cursor: pointer;
 }
 
-button:active {
+.auth-page button:active {
   transform: scale(0.95);
 }
 
-button.ghost {
+.auth-page button:hover {
+  background: #ff4b8a;
+}
+
+.auth-page button.ghost {
   background: transparent;
   border-color: #fff;
 }
 
-/* OVERLAY */
-.overlay-container {
+/* --- Overlay --- */
+.auth-page .overlay-container {
   position: absolute;
   top: 0;
   left: 50%;
@@ -112,11 +135,11 @@ button.ghost {
   z-index: 100;
 }
 
-.container.right-panel-active .overlay-container {
+.auth-page .container.right-panel-active .overlay-container {
   transform: translateX(-100%);
 }
 
-.overlay {
+.auth-page .overlay {
   background: linear-gradient(to right, #ff6879, #fd61ba);
   background-repeat: no-repeat;
   background-size: cover;
@@ -129,17 +152,17 @@ button.ghost {
   transition: transform 0.6s ease-in-out;
 }
 
-.container.right-panel-active .overlay {
+.auth-page .container.right-panel-active .overlay {
   transform: translateX(50%);
 }
 
-/* OVERLAY PANELS */
-.overlay-panel {
+/* --- Overlay Panels --- */
+.auth-page .overlay-panel {
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Center vertically */
+  justify-content: center;
   text-align: center;
   padding: 0 40px;
   top: 0;
@@ -147,37 +170,32 @@ button.ghost {
   width: 50%;
 }
 
-.overlay-left {
+.auth-page .overlay-left {
   transform: translateX(-20%);
   left: 0;
 }
 
-.overlay-right {
+.auth-page .overlay-right {
   right: 0;
   transform: translateX(0);
 }
 
-.container.right-panel-active .overlay-left {
+.auth-page .container.right-panel-active .overlay-left {
   transform: translateX(0);
 }
 
-.container.right-panel-active .overlay-right {
+.auth-page .container.right-panel-active .overlay-right {
   transform: translateX(20%);
 }
-.role-select {
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: white;
-  font-size: 14px;
-  color: #333;
-  width: 100%;
-  outline: none;
-  transition: border-color 0.3s ease;
-}
 
-.role-select:focus {
-  border-color: #ff4b2b;
-  box-shadow: 0 0 5px rgba(255, 75, 43, 0.4);
+/* --- Responsiveness --- */
+@media (max-width: 768px) {
+  .auth-page .container {
+    width: 90%;
+    min-height: 600px;
+  }
+
+  .auth-page form {
+    padding: 0 30px;
+  }
 }
