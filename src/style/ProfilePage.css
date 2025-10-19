@@ -1,0 +1,208 @@
+/* --- Main Container --- */
+.profile-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    
+    font-family: 'Poppins', sans-serif;
+}
+
+/* --- Profile Card --- */
+.profile-card {
+    background-color: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 500px;
+    padding: 2.5rem;
+    text-align: center;
+}
+
+/* --- Header Section --- */
+.profile-header {
+    margin-bottom: 2rem;
+}
+
+.profile-avatar {
+    color: #007bff; /* A nice blue for the placeholder */
+    margin-bottom: 0.5rem;
+}
+
+.profile-header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.profile-role {
+    margin: 0;
+    font-size: 1rem;
+    color: #888;
+    background-color: #f0f0f0;
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    border-radius: 15px;
+}
+
+/* --- Details Section --- */
+.profile-details {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-icon {
+    color: #f06292; /* Pink color */
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.detail-item label {
+    font-weight: 600;
+    color: #555;
+    flex-basis: 120px;
+}
+
+.detail-item span {
+    color: #333;
+}
+
+.detail-item input {
+    flex-grow: 1;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 0.5rem;
+    font-size: 0.95rem;
+}
+
+/* --- Buttons and Actions --- */
+.profile-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-edit { background-color: #e1bee7; color: #8e24aa; }
+.btn-save { background-color: #c8e6c9; color: #2e7d32; }
+.btn-feedback { background-color: #bbdefb; color: #0d47a1; }
+
+.profile-danger-zone {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.btn-logout { color: #777; }
+.btn-logout:hover { color: #333; }
+.btn-delete { color: #d32f2f; }
+.btn-delete:hover { color: #b71c1c; }
+
+
+/* --- Feedback Modal --- */
+/* --- Feedback Modal --- */
+.feedback-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.feedback-modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    position: relative;
+    /* Ensure modal content fits inside */
+    box-sizing: border-box; 
+}
+
+.feedback-modal h2 { margin-top: 0; }
+
+.feedback-modal p {
+    margin-bottom: 1.5rem; /* Add some space below the description */
+}
+
+.feedback-modal textarea {
+    /* --- FIXES START HERE --- */
+    width: calc(100% - 2px); /* Calc 100% minus borders to be safe */
+    min-height: 120px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-size: 1rem;
+    resize: vertical;
+    /* This is the key: tells the browser to include padding and border in the width calculation */
+    box-sizing: border-box; 
+    /* --- FIXES END HERE --- */
+}
+
+.feedback-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem; /* Add some space above the buttons */
+}
+.btn-cancel { background-color: #f1f1f1; color: #555; }
+.btn-send { background-color: #f06292; color: white; }
+
+.close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #888;
+}

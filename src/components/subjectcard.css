@@ -1,0 +1,99 @@
+/* --- Styling for the SubjectCard component --- */
+
+.subject-card {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  overflow: hidden; /* Ensures image corners are rounded */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.subject-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.card-image-container {
+  position: relative;
+  width: 100%;
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.page-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.card-content {
+  padding: 1.5rem;
+  flex-grow: 1; /* Makes card content fill remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.card-content p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex-grow: 1; /* Pushes actions to the bottom */
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto; /* Pushes to the bottom */
+}
+
+.explore-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.explore-link:hover {
+  text-decoration: underline;
+}
+
+.start-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #fdd835; /* Yellow */
+  color: #333;
+  border: none;
+  border-radius: 20px;
+  padding: 0.7rem 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #fbc02d; /* Darker yellow */
+}

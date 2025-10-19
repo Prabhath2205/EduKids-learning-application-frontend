@@ -1,0 +1,235 @@
+/* --- Google Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* --- Global Styles --- */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  /* This gradient mimics the background colors from your image */
+  background: linear-gradient(135deg, #c0f1ff 0%, #f2fbc0 100%);
+  min-height: 100vh;
+}
+
+.page-container {
+  width: 100%;
+  overflow-x: hidden; /* Prevents horizontal scroll */
+}
+
+.main-content {
+  padding: 10px; /* Adds spacing on the left and right */
+  max-width: 1300px;
+  margin: 0 auto; /* Centers the main content */
+}
+
+/* --- Hero Section --- */
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 0;
+}
+
+.hero-content-card {
+  display: flex;
+  background: #ffffff;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+  padding: 3rem 4rem;
+  width: 100%;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero-text {
+  flex: 1; /* Takes up available space */
+}
+
+.hero-text h1 {
+  font-size: 2.7rem;
+  font-weight: 700;
+  color: #333;
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.8rem 1.8rem;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #fce4ec; /* Light pink background */
+  color: #d81b60; /* Darker pink text */
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero-image {
+  flex: 1;
+  text-align: center;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- Features Section --- */
+.features-section {
+  padding: 3rem 0;
+}
+
+.features-grid {
+  display: flex;       /* 1. Use flexbox to create a row */
+  /* 2. Add a horizontal scrollbar *only if needed* */
+  gap: 2rem;
+  
+  /* 3. Adds a little space at the bottom for the scrollbar */
+  padding-bottom: 1.5rem; 
+   /* Ensures the last card's shadow isn't cut off */
+
+  /* Optional: This makes scrolling feel smoother on mobile */
+  scroll-snap-type: x mandatory; 
+}
+
+.feature-card {
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  flex: 1;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Card-specific background colors */
+.card-lessons { background-color: #e0f2f1; }
+.card-sounds { background-color: #fce4ec; }
+.card-creative { background-color: #fbe9e7; }
+.card-secure { background-color: #e8f5e9; }
+
+.feature-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 1.5rem;
+  background-color: #ffffff;
+}
+
+/* Icon-specific colors */
+.card-lessons .feature-icon { color: #00796b; }
+.card-sounds .feature-icon { color: #d81b60; }
+.card-creative .feature-icon { color: #f4511e; }
+.card-secure .feature-icon { color: #388e3c; }
+
+.feature-card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* --- Flower Footer --- */
+.flower-footer {
+  width: 100%;
+  height: 100px; /* Adjust height as needed */
+  /* --- TODO: Replace with your flower border image --- */
+  background-image: url('./assets/flower-border.png');
+  background-repeat: repeat-x; /* Repeats the image horizontally */
+  background-position: bottom;
+  background-size: contain; /* Adjust as needed */
+  margin-top: 2rem;
+}
+
+/* --- Responsiveness --- */
+
+/* For tablets and smaller desktops */
+@media (max-width: 992px) {
+  .hero-content-card {
+    flex-direction: column; /* Stack text and image vertically */
+    padding: 2.5rem;
+    text-align: center;
+  }
+
+  .hero-text p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center; /* Center the buttons */
+  }
+
+  .features-grid {
+    /* Shows 2 columns on tablets */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+/* For mobile phones */
+@media (max-width: 600px) {
+  .main-content {
+    padding: 0 3%;
+  }
+
+  .hero-content-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .hero-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column; /* Stack buttons vertically */
+  }
+
+  .features-grid {
+    /* Shows 1 column on mobile */
+    grid-template-columns: 1fr;
+  }
+}
+/* --- Scroll Animation --- */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-on-scroll.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -1,0 +1,62 @@
+/* --- REMOVED ---
+  The "body" style was removed from this file. 
+  Global styles like "margin: 0" and "font-family" should be in 
+  your main "index.css" or "App.css" file, not here.
+*/
+
+.home-page-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto; /* Centers the content */
+  
+  /* --- ADDED STYLES --- */
+  /* This moves the background from 'body' to this specific page */
+  
+  /* Ensures the gradient fills at least the whole screen height */
+  min-height: 100vh; 
+}
+
+.welcome-heading {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #f06292; /* Pink color from image */
+  margin-bottom: 2.5rem;
+  /* Add padding-top to give space from the header */
+  padding-top: 2rem; 
+}
+
+/* --- Subject Grid Layout --- */
+.subject-grid {
+  display: grid;
+  /* Creates 3 columns by default */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+
+/* --- Responsiveness --- */
+
+/* For tablets */
+@media (max-width: 992px) {
+  .subject-grid {
+    /* Shows 2 columns */
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .welcome-heading {
+    font-size: 2.5rem;
+  }
+}
+
+/* For mobile phones */
+@media (max-width: 600px) {
+  .subject-grid {
+    /* Shows 1 column */
+    grid-template-columns: 1fr;
+  }
+
+  .welcome-heading {
+    font-size: 2rem;
+    text-align: center;
+  }
+}
