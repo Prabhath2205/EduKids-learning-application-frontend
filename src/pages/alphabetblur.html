@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alphabets - EduKids</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam&display=swap" rel="stylesheet">
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: linear-gradient(135deg, #CCEAF2 0%, #F4FCBE 100%);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Blur effect when popup is shown */
+body.blurred main {
+    filter: blur(3px);
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Header */
+header {
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+}
+header .logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color: #7b4bff;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: black;
+}
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #e5b9e9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.profile-icon .avatar {
+    font-size: 18px;
+}
+
+/* Section titles */
+h2 {
+    font-family: 'Noto Sans Malayalam', Arial, sans-serif;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 33px;
+    color: #dd0182;
+}
+
+/* Letter grid */
+.letter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Fixed 5 columns for VYANJANAM */
+.vyanjanam-grid {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    height: 90px;
+    border-radius: 12px;
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.tile:nth-child(5n+1) { background-color: #fde2e4; color: #b23a48; }
+.tile:nth-child(5n+2) { background-color: #fff1e6; color: #c97c5d; }
+.tile:nth-child(5n+3) { background-color: #e0f7f9; color: #197278; }
+.tile:nth-child(5n+4) { background-color: #e4f0d0; color: #386641; }
+.tile:nth-child(5n+5) { background-color: #f1f0ff; color: #4a4e69; }
+
+/* SWARAM grid */
+.swaram-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* VYANJANAM grid */
+.vyanjanam-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 90px);
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    margin: auto;
+}
+
+.tile:hover {
+    transform: scale(1.05);
+    background: #fdf7ff;
+}
+
+/* Enlarged letter popup */
+#enlarged-view {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#enlarged-letter {
+    font-size: 300px;
+    font-family: 'Noto Sans Malayalam', sans-serif;
+    padding: 40px 60px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+   /* color: #707070;*/
+}
+.enlarged-controls {
+    margin-top: 20px;
+    text-align: center;
+}
+.enlarged-controls button {
+    font-size: 20px;
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: none;
+    background: #ffeb99;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.butterfly {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+}
+
+@keyframes fly-left {
+    0% { transform: translateX(0) translateY(0) rotate(0deg); opacity: 1; }
+    50% { transform: translateX(-50vw) translateY(-50px) rotate(20deg); }
+    100% { transform: translateX(-100vw) translateY(0) rotate(-20deg); opacity: 0; }
+}
+
+@keyframes fly-right {
+    0% { transform: translateX(0) translateY(0) rotate(0deg); opacity: 1; }
+    50% { transform: translateX(50vw) translateY(-50px) rotate(-20deg); }
+    100% { transform: translateX(100vw) translateY(0) rotate(20deg); opacity: 0; }
+}
+/* Footer */
+footer {
+    margin-top: 46px;
+    background: url('flower_border_clean_v2.png') repeat-x;
+    height: 90px;
+    background-size: contain;
+    border-top: none;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">EduKids</div>
+    <nav>
+        <a href="#">ABOUT US</a>
+        <a href="#">HOME</a>
+        <a href="#">PROGRESS</a>
+    </nav>
+    <div class="profile-icon">
+        <div class="avatar" aria-hidden="true">👤</div>
+    </div>
+</header>
+
+<main>
+    <!-- SWARAM Section -->
+    <h2>സ്വരാക്ഷരങ്ങൾ</h2>
+    <div class="swaram-grid">
+        <div class="tile">അ</div><div class="tile">ആ</div><div class="tile">ഇ</div><div class="tile">ഈ</div>
+        <div class="tile">ഉ</div><div class="tile">ഊ</div><div class="tile">ഋ</div><div class="tile">എ</div>
+        <div class="tile">ഏ</div><div class="tile">ഐ</div><div class="tile">ഒ</div><div class="tile">ഓ</div>
+        <div class="tile">ഔ</div><div class="tile">അം</div><div class="tile">അഃ</div>
+    </div>
+
+    <!-- വ്യഞ്ജനാക്ഷരങ്ങൾ section -->
+    <h2>വ്യഞ്ജനാക്ഷരങ്ങൾ</h2>
+    <div class="vyanjanam-grid">
+        <div class="tile">ക</div><div class="tile">ഖ</div><div class="tile">ഗ</div><div class="tile">ഘ</div><div class="tile">ങ</div>
+        <div class="tile">ച</div><div class="tile">ഛ</div><div class="tile">ജ</div><div class="tile">ഝ</div><div class="tile">ഞ</div>
+        <div class="tile">ട</div><div class="tile">ഠ</div><div class="tile">ഡ</div><div class="tile">ഢ</div><div class="tile">ണ</div>
+        <div class="tile">ത</div><div class="tile">ഥ</div><div class="tile">ദ</div><div class="tile">ധ</div><div class="tile">ന</div>
+        <div class="tile">പ</div><div class="tile">ഫ</div><div class="tile">ബ</div><div class="tile">ഭ</div><div class="tile">മ</div>
+        <div class="tile">യ</div><div class="tile">ര</div><div class="tile">ല</div><div class="tile">വ</div>
+        <div class="tile">ശ</div><div class="tile">ഷ</div><div class="tile">സ</div><div class="tile">ഹ</div>
+        <div class="tile">ള</div><div class="tile">റ</div><div class="tile">ഴ</div>
+    </div>
+</main>
+
+<!-- Enlarged letter popup -->
+<div id="enlarged-view">
+    <div>
+        <div id="enlarged-letter"></div>
+        <div class="enlarged-controls">
+            <button id="prev-btn">⬅</button>
+            <button class="audio-btn">🔊</button>
+            <button id="next-btn">➡</button>
+            <p><button id="close-btn">Back</button></p>
+        </div>
+    </div>
+</div>
+
+<footer></footer>
+
+<script>
+const tiles = document.querySelectorAll('.tile');
+const enlargedView = document.getElementById('enlarged-view');
+const enlargedLetter = document.getElementById('enlarged-letter');
+let currentIndex = 0;
+let allLetters = [];
+
+
+tiles.forEach((tile, index) => {
+    allLetters.push(tile.textContent);
+    tile.addEventListener('click', () => {
+        currentIndex = index;
+        showEnlarged();
+    });
+});
+
+const pastelGradients = [
+    "linear-gradient(135deg, #fce1ec, #d4f1f9)",
+    "linear-gradient(135deg, #fde2e4, #fff1e6)",
+    "linear-gradient(135deg, #e0f7f9, #f1f0ff)",
+    "linear-gradient(135deg, #e4f0d0, #fce1ec)",
+    "linear-gradient(135deg, #f1f0ff, #d4f1f9)"
+];
+
+const letterColors = [
+    "#b23a48", // pastel pink-red
+    "#c97c5d", // warm tan
+    "#197278", // teal
+    "#386641", // green
+    "#4a4e69"  // muted purple
+];
+
+function showEnlarged() {
+    enlargedLetter.textContent = allLetters[currentIndex];
+    enlargedLetter.style.background = pastelGradients[currentIndex % pastelGradients.length];
+    enlargedLetter.style.color = letterColors[currentIndex % letterColors.length];
+    enlargedView.style.display = 'flex';
+    document.body.classList.add('blurred');
+}
+
+document.getElementById('close-btn').onclick = () => {
+    enlargedView.style.display = 'none';
+    document.body.classList.remove('blurred');
+};
+document.getElementById('prev-btn').onclick = () => {
+    currentIndex = (currentIndex - 1 + allLetters.length) % allLetters.length;
+    showEnlarged();
+};
+document.getElementById('next-btn').onclick = () => {
+    currentIndex = (currentIndex + 1) % allLetters.length;
+    showEnlarged();
+};
+const butterflies = [
+    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path fill='%23ff99cc' d='M32 12c-4 0-8-6-12-6s-6 4-6 8c0 4 6 8 6 12s-6 8-6 12c0 4 2 8 6 8s8-6 12-6 8 6 12 6 6-4 6-8c0-4-6-8-6-12s6-8 6-12c0-4-2-8-6-8s-8 6-12 6z'/></svg>",
+    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path fill='%23ffcc66' d='M32 12c-4 0-8-6-12-6s-6 4-6 8c0 4 6 8 6 12s-6 8-6 12c0 4 2 8 6 8s8-6 12-6 8 6 12 6 6-4 6-8c0-4-6-8-6-12s6-8 6-12c0-4-2-8-6-8s-8 6-12 6z'/></svg>",
+    "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path fill='%2399ccff' d='M32 12c-4 0-8-6-12-6s-6 4-6 8c0 4 6 8 6 12s-6 8-6 12c0 4 2 8 6 8s8-6 12-6 8 6 12 6 6-4 6-8c0-4-6-8-6-12s6-8 6-12c0-4-2-8-6-8s-8 6-12 6z'/></svg>"
+];
+
+function spawnButterfly() {
+    const butterfly = document.createElement("div");
+    butterfly.className = "butterfly";
+    butterfly.style.backgroundImage = `url("${butterflies[Math.floor(Math.random() * butterflies.length)]}")`;
+    
+    const fromLeft = Math.random() < 0.5; // 50% chance direction
+    const startX = fromLeft ? "-50px" : "calc(100vw + 50px)";
+    const startY = 70+ Math.random() * window.innerHeight+ "px";
+
+    butterfly.style.left = startX;
+    butterfly.style.top = startY;
+    butterfly.style.animation = `${fromLeft ? "fly-right" : "fly-left"} ${15 + Math.random() * 10}s linear forwards`;
+    
+    document.body.appendChild(butterfly);
+    
+    // Remove after animation
+    setTimeout(() => butterfly.remove(), 25000);
+}
+
+// Spawn 2 butterflies at a time every few seconds
+setInterval(() => {
+    spawnButterfly();
+    spawnButterfly();
+}, 5000);
+</script>
+
+</body>
+</html>
