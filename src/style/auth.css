@@ -1,11 +1,11 @@
 /* =========================================
-   🎨 AUTH PAGE - LOGIN / SIGN UP (Scoped)
-   ========================================= */
+    🎨 AUTH PAGE - LOGIN / SIGN UP (Scoped)
+    ========================================= */
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 .auth-page {
-  background: linear-gradient(135deg, #CCEAF2 0%, #F4FCBE 100%);
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -136,7 +136,7 @@
 }
 
 .auth-page .container.right-panel-active .overlay-container {
-  transform: translateX(-100%);
+  transform: translateX(-110%);
 }
 
 .auth-page .overlay {
@@ -145,9 +145,11 @@
   background-size: cover;
   color: #fff;
   position: relative;
-  left: -100%;
+  /* --- FIX START --- */
+  left: -110%;      /* Adjusted from -100% */
   height: 100%;
-  width: 200%;
+  width: 220%;      /* Increased width from 200% */
+  /* --- FIX END --- */
   transform: translateX(0);
   transition: transform 0.6s ease-in-out;
 }
@@ -164,10 +166,11 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 0 40px;
+  padding: 0 0px;
   top: 0;
   height: 100%;
-  width: 50%;
+  width: 46.45%; /* This is 100% / 2.2 to match the new overlay width */
+  transition: transform 0.6s ease-in-out;
 }
 
 .auth-page .overlay-left {
@@ -199,3 +202,4 @@
     padding: 0 30px;
   }
 }
+

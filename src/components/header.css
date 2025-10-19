@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 30px;
+  padding: 0px;
   background: white;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -27,4 +27,61 @@ nav li {
 .profile-icon {
   font-size: 24px;
   color: #555;
+  
 }
+
+.page-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative; /* keeps it above background shapes */
+            z-index: 50;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+          font-size: 30px;
+          font-weight: bold;
+          color: white;
+          background-color: #7b4bff;
+          padding: 5px 10px;
+          border-radius: 20px;
+          margin: 0px 10px;
+
+        }
+
+        .main-nav {
+            display: none; /* Hidden on mobile */
+        }
+
+        @media (min-width: 768px) {
+            .main-nav {
+                display: flex;
+                align-items: center;
+                gap: 2rem; /* 32px */
+            }
+        }
+
+        .main-nav a {
+            color: #4B5563;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .main-nav a:hover {
+            color: #6A0DAD;
+        }
+
+        .user-icon-container {
+            display: flex;
+            align-items: center;
+            padding:12px;
+            border-radius: 50%;
+            background-color: #7b4bff;
+            margin:10px;
+  
+
+        }

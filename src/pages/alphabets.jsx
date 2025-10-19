@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Header from "../components/header";
 import "../style/alphabets.css";
-import flowerImage from "../assets/flowers.png";
 import { HiSpeakerWave } from "react-icons/hi2";
+import Footer from "../components/footer"
 
 // --- Dummy alphabet dataset ---
 const alphabetData = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map((char) => ({
@@ -52,7 +52,7 @@ const AlphabetPage = () => {
 
   return (
     <div className="alphabet-page-container">
-      <Header />
+      
 
       <main className="main-content">
 
@@ -200,7 +200,7 @@ const AlphabetPage = () => {
       )}
 
       <footer className="page-footer">
-        <img src={flowerImage} alt="Decorative flower border" /><img src={flowerImage} alt="Decorative flower border" />
+       
       </footer>
     </div>
   );

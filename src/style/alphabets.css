@@ -3,7 +3,7 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
-  background: linear-gradient(135deg, #CCEAF2 0%, #F4FCBE 100%);
+  background: linear-gradient(135deg, #a9e1f1 0%, #edf7b1 100%);
   overflow-x: hidden;
 }
 
@@ -42,36 +42,7 @@ body {
   background-color: #F9A8D4;
 }
 
-/* --- Header Styles (optional if header present) --- */
-.logo {
-  font-size: 1.875rem;
-  font-weight: 700;
-  color: #6A0DAD;
-}
 
-.main-nav {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .main-nav {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-  }
-}
-
-.main-nav a {
-  color: #4B5563;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.main-nav a:hover {
-  color: #6A0DAD;
-}
-
-/* --- Main Content --- */
 .main-content {
   width: 100%;
   max-width: 1200px;
@@ -261,38 +232,6 @@ body {
   z-index: 5;
 }
 
-.flower-bed {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-around;
-}
-
-.flower {
-  position: relative;
-  width: 32px;
-  height: 4.5rem;
-}
-
-.flower-stem {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 3rem;
-  width: 2px;
-}
-
-.flower-svg {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-/* --- Responsive Adjustments --- */
 @media (min-width: 640px) {
   .title-text {
     font-size: 2.25rem;
