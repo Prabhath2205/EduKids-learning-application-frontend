@@ -13,6 +13,8 @@ import Home from './pages/home';
 import ProfilePage from './pages/ProfilePage';
 import Login from './pages/login'; // <-- 1. IMPORT THE LOGIN PAGE
 
+
+
 function App() {
   return (
     // 4. Wrap your entire app in <BrowserRouter>
