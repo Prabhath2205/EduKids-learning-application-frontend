@@ -1,0 +1,27 @@
+/* style/adminhome.css */
+
+.admin-home-container {
+  padding: 20px;
+  text-align: center;
+  background-color: #f7f8fa;
+  min-height: 100vh;
+}
+
+.admin-heading {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.subject-grid-admin {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+/* Optional: If you want to tweak hover for CMS cards */
+.subject-card-cms:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}

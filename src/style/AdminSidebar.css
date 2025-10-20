@@ -1,0 +1,63 @@
+/* Container */
+.admin-page-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 250px;
+  background-color: #163701;
+  color: white;
+  padding: 20px;
+}
+
+.admin-sidebar-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.admin-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.8);
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.admin-nav-item:hover {
+  background-color: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.admin-nav-item.active {
+  background-color: #4a7c59;
+  font-weight: 500;
+  color: white;
+}
+
+.admin-nav-icon {
+  font-size: 18px;
+}
+
+/* Content Area */
+.admin-content {
+  flex: 1;
+  padding: 30px;
+  background-color: #f8fdf9;
+}

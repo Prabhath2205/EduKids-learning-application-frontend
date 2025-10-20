@@ -1,0 +1,71 @@
+/* additemform.css */
+
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.add-item-form {
+  background-color: #fff;
+  padding: 30px 25px;
+  border-radius: 12px;
+  width: 320px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.add-item-form h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #333;
+}
+
+.add-item-form input {
+  width: 100%;
+  padding: 8px 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.form-buttons button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.form-buttons button:first-child {
+  background-color: #28a745;
+  color: white;
+}
+
+.form-buttons button:first-child:hover {
+  background-color: #218838;
+}
+
+.form-buttons button:last-child {
+  background-color: #dc3545;
+  color: white;
+}
+
+.form-buttons button:last-child:hover {
+  background-color: #c82333;
+}
