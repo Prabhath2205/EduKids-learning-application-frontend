@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam&display=swap');
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -13,6 +13,7 @@ body {
 
 /* --- Page Container --- */
 .alphabet-page-container {
+  font-family: 'Noto Sans Malayalam', sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -110,6 +111,7 @@ body {
 }
 
 .card-letter {
+  font-family: 'Noto Sans Malayalam', sans-serif;
   font-size: 3rem;
   font-weight: 700;
   color: #374151;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/*import React, { useState } from "react";
 import Header from "../components/header";
 import "../style/alphabets.css";
 import { HiSpeakerWave } from "react-icons/hi2";
@@ -56,7 +56,7 @@ const AlphabetPage = () => {
 
       <main className="main-content">
 
-        {/* ---------- SECTION 1 ---------- */}
+        {/* ---------- SECTION 1 ---------- *//*}
         <div className="section section1">
           <div className="title-bar">
             <h2 className="title-text">SECTION 1</h2>
@@ -75,13 +75,13 @@ const AlphabetPage = () => {
           </div>
         </div>
 
-        {/* ---------- SECTION 2 ---------- */}
+        {/* ---------- SECTION 2 ---------- *//*}
         <div className="section section2">
           <div className="title-bar">
             <h2 className="title-text">SECTION 2</h2>
           </div>
 
-          {/* 5 x 5 grid */}
+          {/* 5 x 5 grid *//*}
           <div className="card-grid section2-grid part1">
             {section2_part1.map((card, index) => (
               <div
@@ -94,7 +94,7 @@ const AlphabetPage = () => {
             ))}
           </div>
 
-          {/* 2 x 4 grid */}
+          {/* 2 x 4 grid *//*}
           <div className="card-grid section2-grid part2">
             {section2_part2.map((card, index) => (
               <div
@@ -109,7 +109,7 @@ const AlphabetPage = () => {
             ))}
           </div>
 
-          {/* 1 x 3 grid */}
+          {/* 1 x 3 grid *//*}
           <div className="card-grid section2-grid part3">
             {section2_part3.map((card, index) => (
               <div
@@ -135,7 +135,7 @@ const AlphabetPage = () => {
           </div>
         </div>
 
-        {/* ---------- SECTION 3 ---------- */}
+        {/* ---------- SECTION 3 ---------- *//*}
         <div className="section section3">
           <div className="title-bar">
             <h2 className="title-text">SECTION 3</h2>
@@ -169,7 +169,7 @@ const AlphabetPage = () => {
         </div>
       </main>
 
-      {/* ---------- MODAL ---------- */}
+      {/* ---------- MODAL ---------- *//*}
       {currentCardIndex !== null && (
         <div className="modal-backdrop" onClick={handleCloseModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -207,3 +207,231 @@ const AlphabetPage = () => {
 };
 
 export default AlphabetPage;
+*/
+import React, { useState } from "react";
+import Header from "../components/header";
+import "../style/alphabets.css";
+import { HiSpeakerWave } from "react-icons/hi2";
+import Footer from "../components/footer";
+
+// --- Malayalam alphabet dataset ---
+
+// Swaraks: vowels
+const swaraksharam = ["അ","ആ","ഇ","ഈ","ഉ","ഊ","ഋ","എ","ഏ","ഐ","ഒ","ഓ","ഔ","അം","അഃ"];
+const vyanjanaksharam = [
+  "ക","ഖ","ഗ","ഘ","ങ","ച","ഛ","ജ","ഝ","ഞ",
+  "ട","ഠ","ഡ","ഢ","ണ","ത","ഥ","ദ","ധ","ന",
+  "പ","ഫ","ബ","ഭ","മ","യ","ര","ല","വ","ശ",
+  "ഷ","സ","ഹ","ള","റ","ഴ"
+];
+const chillaksharam = ["ൻ", "ൺ", "ൽ", "ൾ", "ർ"];
+
+// Combine into extended data
+const alphabetData = [
+  ...swaraksharam.map((letter) => ({ letter, image: "", sound: "" })),
+  ...vyanjanaksharam.map((letter) => ({ letter, image: "", sound: "" })),
+  ...chillaksharam.map((letter) => ({ letter, image: "", sound: "" }))
+];
+
+// Add filler cards to maintain structure
+const extendedData = [
+  ...alphabetData,
+  ...Array.from({ length: 40 }, (_, i) => ({
+    letter: `X${i + 1}`,
+    image: "",
+    sound: "",
+  })),
+  ...Array.from({ length: 5 }, (_, i) => ({
+    letter: `S3-${i + 1}`,
+    image: "",
+    sound: "",
+  })),
+];
+const tileColors = ["#FFCDD2", "#C8E6C9", "#BBDEFB", "#FFF9C4", "#D1C4E9"];
+const letterColors = ["#B71C1C", "#1B5E20", "#0D47A1", "#F57F17", "#4A148C"];
+
+const AlphabetPage = () => {
+  const [currentCardIndex, setCurrentCardIndex] = useState(null);
+
+  const handleCardClick = (index) => setCurrentCardIndex(index);
+  const handleCloseModal = () => setCurrentCardIndex(null);
+  const handleNextCard = () =>
+    setCurrentCardIndex((prev) => (prev + 1) % extendedData.length);
+  const handlePrevCard = () =>
+    setCurrentCardIndex((prev) => (prev - 1 + extendedData.length) % extendedData.length);
+
+  const playPronunciation = (soundPath) => {
+    alert(`Sound clicked! (Path: ${soundPath || "No sound yet"})`);
+  };
+
+  // === Divide data by section ===
+  const section1Data = extendedData.slice(0, swaraksharam.length); // Swaraks
+  const section2Data = extendedData.slice(swaraksharam.length, swaraksharam.length + vyanjanaksharam.length); // Vyanjans
+  const section3Data = extendedData.slice(
+    swaraksharam.length + vyanjanaksharam.length,
+    swaraksharam.length + vyanjanaksharam.length + chillaksharam.length
+  ); // Chillus
+
+  // Subdividing section 2 (Vyanjans)
+  const section2_part1 = section2Data.slice(0, 25); // 5x5 grid
+  const section2_part2 = section2Data.slice(25, 33); // 8 cards (2x4)
+  const section2_part3 = section2Data.slice(33, 36); // 3 cards (1 row)
+
+  return (
+    <div className="alphabet-page-container">
+      <main className="main-content">
+
+        {/* ---------- SECTION 1: Swaraks ---------- */}
+        <div className="section section1">
+          <div className="title-bar">
+            <h2 className="title-text">SECTION 1: സ്വരാക്ഷരം</h2>
+          </div>
+          <div className="card-grid section1-grid">
+            {section1Data.map((card, index) => (
+              <div
+                key={index}
+                className="card"
+                onClick={() => handleCardClick(index)}
+                style={{ backgroundColor: tileColors[index % tileColors.length] }}
+              >
+                <span className="card-letter" style={{ color: letterColors[index % letterColors.length] }}>{card.letter}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ---------- SECTION 2: Vyanjans ---------- */}
+        <div className="section section2">
+          <div className="title-bar">
+            <h2 className="title-text">SECTION 2: വ്യഞ്ജനാക്ഷരം</h2>
+          </div>
+
+          {/* 5 x 5 grid */}
+          <div className="card-grid section2-grid part1">
+            {section2_part1.map((card, index) => (
+              <div
+                key={index + section1Data.length}
+                className="card"
+                onClick={() => handleCardClick(index + section1Data.length)}
+                style={{ backgroundColor: tileColors[index % tileColors.length] }}
+              >
+                <span className="card-letter" style={{ color: letterColors[index % letterColors.length] }}>{card.letter}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* 2 x 4 grid */}
+          <div className="card-grid section2-grid part2">
+            {section2_part2.map((card, index) => (
+              <div
+                key={index + section1Data.length + section2_part1.length}
+                className="card"
+                onClick={() =>
+                  handleCardClick(index + section1Data.length + section2_part1.length)
+                } style={{ backgroundColor: tileColors[index % tileColors.length] }}
+              >
+                <span className="card-letter" style={{ color: letterColors[index % letterColors.length] }}>{card.letter}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* 1 x 3 grid */}
+          <div className="card-grid section2-grid part3">
+            {section2_part3.map((card, index) => (
+              <div
+                key={
+                  index +
+                  section1Data.length +
+                  section2_part1.length +
+                  section2_part2.length
+                }
+                className="card"
+                onClick={() =>
+                  handleCardClick(
+                    index +
+                      section1Data.length +
+                      section2_part1.length +
+                      section2_part2.length
+                  )
+                } style={{ backgroundColor: tileColors[index % tileColors.length] }}
+              >
+                <span className="card-letter" style={{ color: letterColors[index % letterColors.length] }}>{card.letter}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ---------- SECTION 3: Chillus ---------- */}
+        <div className="section section3">
+          <div className="title-bar">
+            <h2 className="title-text">SECTION 3: ചില്ലാക്ഷരം</h2>
+          </div>
+
+          <div className="card-grid section3-grid">
+            {section3Data.map((card, index) => (
+              <div
+                key={
+                  index +
+                  section1Data.length +
+                  section2_part1.length +
+                  section2_part2.length +
+                  section2_part3.length
+                }
+                className="card"
+                onClick={() =>
+                  handleCardClick(
+                    index +
+                      section1Data.length +
+                      section2_part1.length +
+                      section2_part2.length +
+                      section2_part3.length
+                  )
+                }
+                style={{ backgroundColor: tileColors[index % tileColors.length] }}
+              >
+                <span className="card-letter" style={{ color: letterColors[index % letterColors.length] }}>{card.letter}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </main>
+
+      {/* ---------- MODAL ---------- */}
+      {currentCardIndex !== null && (
+        <div className="modal-backdrop" onClick={handleCloseModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-arrow prev" onClick={handlePrevCard}>
+              &#10094;
+            </button>
+
+            <div className="modal-card-container">
+              <div className="modal-image-placeholder">
+                <p>Image for</p>
+                <span>{extendedData[currentCardIndex].letter}</span>
+              </div>
+              <button
+                className="speaker-button"
+                onClick={() =>
+                  playPronunciation(extendedData[currentCardIndex].sound)
+                }
+              >
+                <HiSpeakerWave />
+              </button>
+            </div>
+
+            <button className="modal-arrow next" onClick={handleNextCard}>
+              &#10095;
+            </button>
+          </div>
+        </div>
+      )}
+
+      <footer className="page-footer">
+        {/* Footer content */}
+      </footer>
+    </div>
+  );
+};
+
+export default AlphabetPage;
+
