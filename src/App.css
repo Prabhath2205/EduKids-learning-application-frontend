@@ -13,34 +13,7 @@ body {
 }
 
 /* --- Reusable Button Component Style --- */
-.btn {
-  padding: 0.8rem 1.8rem;
-  border: none;
-  border-radius: 25px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background-color: #fce4ec; /* Light pink background */
-  color: #d81b60; /* Darker pink text */
-}
 
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* --- Reusable Scroll Animation --- */
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.animate-on-scroll.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
 /* --- Google Font Import --- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
@@ -50,5 +23,5 @@ body {
   font-family: 'Poppins', sans-serif;
   /* This gradient mimics the background colors from your image */
   background: linear-gradient(135deg, #c0f1ff 0%, #f2fbc0 100%);
-  min-height: 100vh;
+
 }

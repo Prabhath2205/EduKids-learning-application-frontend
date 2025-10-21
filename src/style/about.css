@@ -1,35 +1,31 @@
 /* --- Google Font Import --- */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-/* --- Global Styles --- */
-body {
+/* --- Scoped About Page Styles --- */
+.about-page {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  /* This gradient mimics the background colors from your image */
-  background: linear-gradient(135deg, #c0f1ff 0%, #f2fbc0 100%);
   min-height: 100vh;
+ 
+  overflow-x: hidden;
 }
 
-.page-container {
-  width: 100%;
-  overflow-x: hidden; /* Prevents horizontal scroll */
-}
-
-.main-content {
-  padding: 10px; /* Adds spacing on the left and right */
+/* Main Content */
+.about-page .main-content {
+  padding: 10px;
   max-width: 1300px;
-  margin: 0 auto; /* Centers the main content */
+  margin: 0 auto;
 }
 
 /* --- Hero Section --- */
-.hero-section {
+.about-page .hero-section {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 3rem 0;
 }
 
-.hero-content-card {
+.about-page .hero-content-card {
   display: flex;
   background: #ffffff;
   border-radius: 25px;
@@ -40,11 +36,11 @@ body {
   gap: 2rem;
 }
 
-.hero-text {
-  flex: 1; /* Takes up available space */
+.about-page .hero-text {
+  flex: 1;
 }
 
-.hero-text h1 {
+.about-page .hero-text h1 {
   font-size: 2.7rem;
   font-weight: 700;
   color: #333;
@@ -52,19 +48,19 @@ body {
   margin-bottom: 1rem;
 }
 
-.hero-text p {
+.about-page .hero-text p {
   font-size: 1.1rem;
   color: #666;
   margin-bottom: 2rem;
   max-width: 500px;
 }
 
-.hero-buttons {
+.about-page .hero-buttons {
   display: flex;
   gap: 1rem;
 }
 
-.btn {
+.about-page .btn {
   padding: 0.8rem 1.8rem;
   border: none;
   border-radius: 25px;
@@ -72,44 +68,38 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  background-color: #fce4ec; /* Light pink background */
-  color: #d81b60; /* Darker pink text */
+  background-color: #fce4ec;
+  color: #d81b60;
 }
 
-.btn:hover {
+.about-page .btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.hero-image {
+.about-page .hero-image {
   flex: 1;
   text-align: center;
 }
 
-.hero-image img {
+.about-page .hero-image img {
   max-width: 100%;
   height: auto;
 }
 
 /* --- Features Section --- */
-.features-section {
+.about-page .features-section {
   padding: 3rem 0;
 }
 
-.features-grid {
-  display: flex;       /* 1. Use flexbox to create a row */
-  /* 2. Add a horizontal scrollbar *only if needed* */
+.about-page .features-grid {
+  display: flex;
   gap: 2rem;
-  
-  /* 3. Adds a little space at the bottom for the scrollbar */
-  padding-bottom: 1.5rem; 
-   /* Ensures the last card's shadow isn't cut off */
-
-  /* Optional: This makes scrolling feel smoother on mobile */
-  scroll-snap-type: x mandatory; 
+  padding-bottom: 1.5rem;
+  scroll-snap-type: x mandatory;
 }
 
-.feature-card {
+.about-page .feature-card {
   padding: 2rem;
   border-radius: 20px;
   text-align: center;
@@ -118,17 +108,17 @@ body {
   transition: transform 0.3s ease;
 }
 
-.feature-card:hover {
+.about-page .feature-card:hover {
   transform: translateY(-5px);
 }
 
 /* Card-specific background colors */
-.card-lessons { background-color: #e0f2f1; }
-.card-sounds { background-color: #fce4ec; }
-.card-creative { background-color: #fbe9e7; }
-.card-secure { background-color: #e8f5e9; }
+.about-page .card-lessons { background-color: #e0f2f1; }
+.about-page .card-sounds { background-color: #fce4ec; }
+.about-page .card-creative { background-color: #fbe9e7; }
+.about-page .card-secure { background-color: #e8f5e9; }
 
-.feature-icon {
+.about-page .feature-icon {
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -139,97 +129,83 @@ body {
   background-color: #ffffff;
 }
 
-/* Icon-specific colors */
-.card-lessons .feature-icon { color: #00796b; }
-.card-sounds .feature-icon { color: #d81b60; }
-.card-creative .feature-icon { color: #f4511e; }
-.card-secure .feature-icon { color: #388e3c; }
+.about-page .card-lessons .feature-icon { color: #00796b; }
+.about-page .card-sounds .feature-icon { color: #d81b60; }
+.about-page .card-creative .feature-icon { color: #f4511e; }
+.about-page .card-secure .feature-icon { color: #388e3c; }
 
-.feature-card h3 {
+.about-page .feature-card h3 {
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: #333;
 }
 
-.feature-card p {
+.about-page .feature-card p {
   font-size: 0.95rem;
   color: #555;
   line-height: 1.5;
 }
 
 /* --- Flower Footer --- */
-.flower-footer {
+.about-page .flower-footer {
   width: 100%;
-  height: 100px; /* Adjust height as needed */
-  /* --- TODO: Replace with your flower border image --- */
+  height: 100px;
   background-image: url('./assets/flower-border.png');
-  background-repeat: repeat-x; /* Repeats the image horizontally */
+  background-repeat: repeat-x;
   background-position: bottom;
-  background-size: contain; /* Adjust as needed */
+  background-size: contain;
   margin-top: 2rem;
 }
 
-/* --- Responsiveness --- */
-
-/* For tablets and smaller desktops */
-@media (max-width: 992px) {
-  .hero-content-card {
-    flex-direction: column; /* Stack text and image vertically */
-    padding: 2.5rem;
-    text-align: center;
-  }
-
-  .hero-text p {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-buttons {
-    justify-content: center; /* Center the buttons */
-  }
-
-  .features-grid {
-    /* Shows 2 columns on tablets */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  }
-}
-
-/* For mobile phones */
-@media (max-width: 600px) {
-  .main-content {
-    padding: 0 3%;
-  }
-
-  .hero-content-card {
-    padding: 2rem 1.5rem;
-  }
-
-  .hero-text h1 {
-    font-size: 2.2rem;
-  }
-
-  .hero-text p {
-    font-size: 1rem;
-  }
-
-  .hero-buttons {
-    flex-direction: column; /* Stack buttons vertically */
-  }
-
-  .features-grid {
-    /* Shows 1 column on mobile */
-    grid-template-columns: 1fr;
-  }
-}
 /* --- Scroll Animation --- */
-.animate-on-scroll {
+.about-page .animate-on-scroll {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-.animate-on-scroll.in-view {
+.about-page .animate-on-scroll.in-view {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* --- Responsive --- */
+@media (max-width: 992px) {
+  .about-page .hero-content-card {
+    flex-direction: column;
+    padding: 2.5rem;
+    text-align: center;
+  }
+
+  .about-page .hero-text p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-page .hero-buttons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-page .main-content {
+    padding: 0 3%;
+  }
+
+  .about-page .hero-content-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .about-page .hero-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .about-page .hero-text p {
+    font-size: 1rem;
+  }
+
+  .about-page .hero-buttons {
+    flex-direction: column;
+  }
 }

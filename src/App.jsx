@@ -1,71 +1,70 @@
-// In your App.js file
 import React from 'react';
-// 1. Import the router components
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
-// 2. Import your components
+// Import your actual components
 import Header from './components/header';
 import Footer from './components/footer';
-
-// 3. Import your page components
+import AdminLogin from './pages/AdminLogin';
 import About from './pages/about';
 import Home from './pages/home';
 import ProfilePage from './pages/ProfilePage';
-import Login from './pages/login'; // <-- 1. IMPORT THE LOGIN PAGE
+import Login from './pages/login';
 import Alphabets from "./pages/alphabets";
-
-// Admin Layout
 import AdminSidebar from './pages/AdminSidebar';
-
-// Admin Pages
 import Dashboard from './components/dashboard';
 import Users from './components/Users';
 import Feedback from './components/Feedback';
 import AdminHome from './pages/AdminHome';
 import AdminWords from './pages/AdminWords';
 
-function App() {
+// This component determines the layout based on the current URL
+function AppContent() {
+  const location = useLocation();
+  // Check if the current path is an admin route that should have the sidebar
+  const isAdminRouteWithSidebar = location.pathname.startsWith("/admin") && location.pathname !== "/adminlogin";
+  // Check if the current path is the admin login page
+  const isAdminLoginPage = location.pathname === "/adminlogin";
+
   return (
-    // 4. Wrap your entire app in <BrowserRouter>
-    <BrowserRouter>
-      {/* Header and Footer are placed OUTSIDE <Routes>.
-        This makes them appear on EVERY page.
-      */}
-      <Header />
-      
-      {/* 5. <Routes> defines which component to show for each URL */}
+    <>
+      {/* Show Header/Footer only for NON-admin routes */}
+      {!isAdminRouteWithSidebar && !isAdminLoginPage && <Header />}
+
       <main>
         <Routes>
-          {/* path="/" (the home page) will show the <Home> component
-            path="/about" will show the <About> component
-          */}
+          {/* Public Routes (no sidebar) */}
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/login" element={<Login />} /> {/* <-- 2. ADD THE LOGIN ROUTE */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/adminlogin" element={<AdminLogin />} />
           <Route path="/alphabets" element={<Alphabets />} />
-          {/* Optional: Add a default route for "/" */}
-          <Route path="/" element={<Home />} />
 
-          {/* ADMIN ROUTES with sidebar layout */}
+          {/* Admin Routes (all nested inside AdminSidebar to show the layout) */}
           <Route path="/admin" element={<AdminSidebar />}>
-            {/* Default admin landing */}
-            <Route index element={<Navigate to="users" replace />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="users" element={<Users />} />
             <Route path="feedback" element={<Feedback />} />
             <Route path="content" element={<AdminHome />} />
-            {/*<Route path="words" element={<AdminWords />} /> */}
+            {/* The "words" route is now correctly nested */}
+            <Route path="words" element={<AdminWords />} />
           </Route>
-          <Route path="/admin/words" element={<AdminWords />} />
-
-
         </Routes>
       </main>
-      
-      <Footer />
+
+      {/* Show Header/Footer only for NON-admin routes */}
+      {!isAdminRouteWithSidebar && !isAdminLoginPage && <Footer />}
+    </>
+  );
+}
+
+// The main App component wraps everything in the router
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
     </BrowserRouter>
   );
 }
 
-export default App;

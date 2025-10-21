@@ -1,11 +1,10 @@
-// pages/AdminHome.jsx
 import React from "react";
 import SubjectCardCMS from "../components/SubjectCardCMS";
 import alphabetImage from "../assets/alphabets-image.png";
 import wordsImage from "../assets/words-image.png";
 import animalsImage from "../assets/animals-image.png";
 import dailyImage from "../assets/daily-image.png";
-import "../style/AdminHome.css"; // Updated CSS for admin dashboard
+import "../style/AdminHome.css"; // ✅ ensure correct path
 
 const subjects = [
   { title: "Alphabets", image: alphabetImage, pageLink: "/alphabets", editable: false },

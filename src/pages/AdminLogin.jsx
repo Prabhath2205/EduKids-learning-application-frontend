@@ -1,3 +1,8 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+// --- STYLES ---
+const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
   /* This wrapper prevents conflicts with global styles */
@@ -92,3 +97,57 @@
   .admin-login-container .login-button:hover {
     background-color: #374151;
   }
+`;
+
+// --- AdminLogin Component ---
+function AdminLogin() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // No authentication, navigate directly to the correct admin route
+    navigate('/admin/content'); // Navigate to the admin content page
+  };
+
+  return (
+    <>
+      <style>{styles}</style>
+      <div className="admin-portal-wrapper">
+        <div className="admin-login-container">
+          <h1>Admin Login</h1>
+          <p>Please enter your credentials to proceed.</p>
+          <form onSubmit={handleLogin}>
+            <div className="input-group">
+              <label htmlFor="username">Username</label>
+              <input
+                id="username"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="e.g., admin"
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+              />
+            </div>
+            <button type="submit" className="login-button">
+              Sign In
+            </button>
+          </form>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default AdminLogin;
+
