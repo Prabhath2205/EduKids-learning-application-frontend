@@ -1,9 +1,17 @@
 import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
-import { FaUsers, FaComment, FaThLarge, FaHome } from "react-icons/fa";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { FaUsers, FaComment, FaThLarge, FaHome, FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 import "../style/AdminSidebar.css"; // ✅ make sure this path matches your folder
 
 const AdminSidebar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    // You can clear auth tokens or session storage here
+    localStorage.removeItem("adminToken");
+    navigate("/login"); // Redirect to login page after logout
+  };
+
   return (
     <div className="admin-page-container">
       {/* Sidebar */}
@@ -47,6 +55,22 @@ const AdminSidebar = () => {
             <FaThLarge className="admin-nav-icon" /> Content Management
           </NavLink>
         </nav>
+
+        {/* Bottom Section */}
+        <div className="admin-sidebar-bottom">
+          <NavLink
+            to="/admin/profile"
+            className={({ isActive }) =>
+              `admin-nav-item ${isActive ? "active" : ""}`
+            }
+          >
+            <FaUserCircle className="admin-nav-icon" /> View Profile
+          </NavLink>
+
+          <button className="admin-nav-item logout-btn" onClick={handleLogout}>
+            <FaSignOutAlt className="admin-nav-icon" /> Logout
+          </button>
+        </div>
       </aside>
 
       {/* Main Content */}
