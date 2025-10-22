@@ -49,7 +49,6 @@ function AppContent() {
             <Route path="users" element={<Users />} />
             <Route path="feedback" element={<Feedback />} />
             <Route path="content" element={<AdminHome />} />
-            {/* The "words" route is now correctly nested */}
             <Route path="words" element={<AdminWords />} />
           </Route>
         </Routes>
