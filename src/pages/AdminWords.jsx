@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
-// --- STYLES ---
-// All styles are embedded here to ensure they are scoped to this component
-// and match the aesthetic of your other admin pages.
+
 const styles = `
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
