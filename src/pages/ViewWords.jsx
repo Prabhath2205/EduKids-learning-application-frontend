@@ -151,7 +151,7 @@ function ViewWords() {
   const speakWord = (text) => {
     const speech = new SpeechSynthesisUtterance(text);
     speech.lang = "en-US";
-    speech.rate = 0.9;
+    speech.rate = 0.8;
     window.speechSynthesis.speak(speech);
   };
 
