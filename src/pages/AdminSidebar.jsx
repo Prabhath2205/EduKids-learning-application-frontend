@@ -9,7 +9,7 @@ const AdminSidebar = () => {
   const handleLogout = () => {
     // You can clear auth tokens or session storage here
     localStorage.removeItem("adminToken");
-    navigate("/login"); // Redirect to login page after logout
+    navigate("/about"); // Redirect to login page after logout
   };
 
   return (

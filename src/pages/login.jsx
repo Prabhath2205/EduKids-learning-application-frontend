@@ -245,7 +245,8 @@ function Login() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Login failed");
 
-      localStorage.setItem("token", data.token);
+      localStorage.setItem('token', data.token);
+      navigate('/home')
       alert(`Login successful! Welcome ${data.role}`);
       // redirect to dashboard page if needed
     } catch (err) {

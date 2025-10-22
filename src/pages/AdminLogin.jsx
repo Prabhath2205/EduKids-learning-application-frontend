@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 const styles = `
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-  /* This wrapper prevents conflicts with global styles */
   .admin-portal-wrapper {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #c0f1ff 0%, #f2fbc0 100%);
@@ -18,7 +17,6 @@ const styles = `
     padding: 20px;
   }
 
-  /* --- Login Page Styles --- */
   .admin-login-container {
     background-color: #ffffff;
     padding: 40px;
@@ -103,12 +101,24 @@ const styles = `
 function AdminLogin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // No authentication, navigate directly to the correct admin route
-    navigate('/admin/content'); // Navigate to the admin content page
+    
+    // Simple validation (you can make this more robust)
+    if (!username || !password) {
+      setError('Please enter both username and password');
+      return;
+    }
+
+    // For now, accept any credentials (you can add real validation later)
+    // Store admin token in localStorage
+    localStorage.setItem('adminToken', 'admin-authenticated');
+    
+    // Navigate to admin dashboard
+    navigate('/admin/dashboard');
   };
 
   return (
@@ -139,6 +149,7 @@ function AdminLogin() {
                 placeholder="••••••••"
               />
             </div>
+            {error && <p className="error-message">{error}</p>}
             <button type="submit" className="login-button">
               Sign In
             </button>
@@ -150,4 +161,3 @@ function AdminLogin() {
 }
 
 export default AdminLogin;
-
