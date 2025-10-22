@@ -1,23 +1,27 @@
-/* Container */
+
 .admin-page-container {
   display: flex;
   min-height: 100vh;
-  background-color: #f5f5f5;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Sidebar */
 .admin-sidebar {
-  width: 250px;
-  background-color: #163701;
-  color: white;
-  padding: 20px;
+  width: 260px;
+  background-color: #1f2937; /* Dark, professional color */
+  color: #ffffff;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0; /* Prevents sidebar from shrinking */
 }
 
 .admin-sidebar-title {
   text-align: center;
   font-size: 24px;
-  margin-bottom: 30px;
-  font-weight: bold;
+  margin-bottom: 35px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .admin-sidebar-nav {
@@ -29,35 +33,36 @@
 .admin-nav-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 18px;
-  background: none;
+  gap: 15px;
+  padding: 14px 18px;
   border: none;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 16px;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .admin-nav-item:hover {
-  background-color: rgba(255,255,255,0.1);
-  color: white;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  transform: translateX(5px);
 }
 
 .admin-nav-item.active {
-  background-color: #4a7c59;
-  font-weight: 500;
-  color: white;
+  background-color: #3b82f6;
+  font-weight: 600;
+  color: #ffffff;
 }
 
 .admin-nav-icon {
-  font-size: 18px;
+  font-size: 20px;
 }
 
-/* Content Area */
 .admin-content {
-  flex: 1;
-  padding: 30px;
-  background-color: #f8fdf9;
+  flex-grow: 1;
+  /* The background is inherited from specific page styles like .dashboard */
+  overflow-y: auto;
 }
+

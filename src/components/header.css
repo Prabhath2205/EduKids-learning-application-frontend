@@ -7,6 +7,17 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* --- Global Styles --- */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  /* This gradient mimics the background colors from your image */
+  background: linear-gradient(135deg, #c0f1ff 0%, #f2fbc0 100%);
+  min-height: 100vh;
+}
+
 .logo {
   font-weight: bold;
   color: #2c6eff;

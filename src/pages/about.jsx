@@ -10,6 +10,7 @@ import heroImage from '../assets/hero-illustration.png';
 
 function About() {
   return (
+    <div className="about-page">
     <main className="main-content">
       {/* Hero Section */}
       <section className="hero-section">
@@ -24,7 +25,7 @@ function About() {
               {/* --- CHANGES START HERE --- */}
               {/* 2. Changed <button> to <Link> and added to="/login" */}
               <Link to="/login" className="btn parent-login">Parent Login</Link>
-              <Link to="/login" className="btn admin-login">Admin Login</Link>
+              <Link to="/adminlogin" className="btn admin-login">Admin Login</Link>
               {/* --- CHANGES END HERE --- */}
             </div>
           </div>
@@ -73,6 +74,7 @@ function About() {
         </div>
       </section>
     </main>
+    </div>
   );
 }
 

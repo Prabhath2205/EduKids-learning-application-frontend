@@ -1,27 +1,115 @@
-/* style/adminhome.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+/* --- Main Container --- */
 .admin-home-container {
-  padding: 20px;
-  text-align: center;
-  background-color: #f7f8fa;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #e0f7fa 0%, #fef9c3 100%); /* Lighter, softer gradient */
+  padding: 40px;
   min-height: 100vh;
+  box-sizing: border-box;
+}
+.admin-heading {
+     background-color: #ffffff;
+    border-radius: 12px;
+    padding: 20px 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex; /* Aligns content to the side */
+    align-items: center;
+    margin:40px;
 }
 
+/* --- Header Area --- */
+
+
+/* --- Page Heading --- */
 .admin-heading {
   font-size: 28px;
-  margin-bottom: 30px;
-  color: #333;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 40; /* Remove default margin */
 }
 
+/* --- Grid Layout for Subject Cards --- */
 .subject-grid-admin {
+  padding: 40px 50px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-  justify-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 30px; /* Increased gap for better spacing */
 }
 
-/* Optional: If you want to tweak hover for CMS cards */
-.subject-card-cms:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+/* --- Content Management Card Styles --- */
+.subject-card-cms {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
 }
+
+/* --- Card Hover Animation --- */
+.subject-card-cms:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Image inside card */
+.subject-card-cms-image { /* Changed from img tag for better specificity */
+  width: 100%;
+  height: 140px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+/* Card Title */
+.subject-card-cms h3 {
+  
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* --- Button Styles within the Card --- */
+.subject-card-cms-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.subject-card-cms-buttons a,
+.subject-card-cms-buttons button {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.view-button {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.view-button:hover {
+  background-color: #d1d5db;
+}
+
+.edit-button {
+  background-color: #3b82f6;
+  color: #ffffff;
+  cursor: pointer;
+  border-color: #3b82f6;
+}
+
+.edit-button:hover {
+  background-color: #2563eb;
+}
+
