@@ -22,7 +22,7 @@ const subjectData = [
     description: "Cute puppies, friendly cats, jungle animals, and farm friends waiting to be colored!",
     pageCount: "24",
     imageSrc: wordsImage,
-    startLink: "/words"
+    startLink: "/ViewWords"
   },
   {
     title: "Animals",

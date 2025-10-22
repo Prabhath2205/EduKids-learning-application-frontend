@@ -16,7 +16,7 @@ import Users from './components/Users';
 import Feedback from './components/Feedback';
 import AdminHome from './pages/AdminHome';
 import AdminWords from './pages/AdminWords';
-
+import ViewWords from './pages/ViewWords';
 // This component determines the layout based on the current URL
 function AppContent() {
   const location = useLocation();
@@ -40,6 +40,8 @@ function AppContent() {
           <Route path="/login" element={<Login />} />
           <Route path="/adminlogin" element={<AdminLogin />} />
           <Route path="/alphabets" element={<Alphabets />} />
+          <Route path="/ViewWords" element={<ViewWords />} />
+
 
           {/* Admin Routes (all nested inside AdminSidebar to show the layout) */}
           <Route path="/admin" element={<AdminSidebar />}>
