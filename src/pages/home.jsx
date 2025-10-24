@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SubjectCard from '../components/subjectcard';
 import '../style/home.css';
+import API_URL from './config';
 
 import alphabetImage from '../assets/alphabets-image.png';
 import wordsImage from '../assets/words-image.png';
@@ -60,7 +61,7 @@ function Home() {
       const payload = JSON.parse(atob(token.split('.')[1]));
       const userId = payload.id;
 
-      const res = await fetch(`http://localhost:5000/api/users/${userId}`, {
+      const res = await fetch(`${API_URL}/api/users/${userId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

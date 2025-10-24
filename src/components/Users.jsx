@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Users.css';
+import API_URL from './config';
 
 const Users = () => {
     const [users, setUsers] = useState([]);
@@ -12,7 +13,7 @@ const Users = () => {
     const fetchUsers = async () => {
         try {
             const token = localStorage.getItem('adminToken') || localStorage.getItem('token');
-            const res = await fetch('http://localhost:5000/api/users', {
+            const res = await fetch(`${API_URL}/api/users`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await res.json();

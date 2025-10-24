@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import API_URL from './config';
 
 // --- STYLES ---
 const styles = `
@@ -114,7 +115,7 @@ function AdminLogin() {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/auth/admin/login', {
+      const res = await fetch(`${API_URL}/api/auth/admin/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),

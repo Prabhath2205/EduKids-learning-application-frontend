@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Feedback.css';
+import API_URL from './config';
 
 const Feedback = () => {
     const [feedbacks, setFeedbacks] = useState([]);
@@ -12,7 +13,7 @@ const Feedback = () => {
     const fetchFeedbacks = async () => {
         try {
             const token = localStorage.getItem('adminToken') || localStorage.getItem('token');
-            const res = await fetch('http://localhost:5000/api/admin/all-feedback', {
+            const res = await fetch(`${API_URL}/api/admin/all-feedback`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             const data = await res.json();

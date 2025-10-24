@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './dashboard.css';
 import { FaBox, FaMoneyBillWave, FaHourglassHalf } from 'react-icons/fa';
 import { MdOutlineShowChart } from 'react-icons/md';
+import API_URL from './config';
 
 const Dashboard = () => {
   const [stats, setStats] = useState({
@@ -22,13 +23,13 @@ const Dashboard = () => {
 
       // Fetch all stats
       const [userRes, feedbackRes, monthlyRes] = await Promise.all([
-        fetch('http://localhost:5000/api/admin/user-count', {
+        fetch(`${API_URL}/api/admin/user-count`, {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch('http://localhost:5000/api/admin/feedback-count', {
+        fetch(`${API_URL}/api/admin/feedback-count`, {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch('http://localhost:5000/api/admin/monthly-feedback', {
+        fetch(`${API_URL}/api/admin/monthly-feedback`, {
           headers: { 'Authorization': `Bearer ${token}` }
         })
       ]);

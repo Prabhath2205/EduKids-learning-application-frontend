@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/ProfilePage.css';
+import API_URL from './config';
 
 import { 
     FaUserEdit, FaTrashAlt, FaSignOutAlt, FaPaperPlane, FaTimes, 
@@ -32,7 +33,7 @@ function ProfilePage() {
             const payload = JSON.parse(atob(token.split('.')[1]));
             const userId = payload.id;
 
-            const res = await fetch(`http://localhost:5000/api/users/${userId}`, {
+            const res = await fetch(`${API_URL}/api/users/${userId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -64,7 +65,7 @@ function ProfilePage() {
             const payload = JSON.parse(atob(token.split('.')[1]));
             const userId = payload.id;
 
-            const res = await fetch(`http://localhost:5000/api/users/${userId}`, {
+            const res = await fetch(`${API_URL}/api/users/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -102,7 +103,7 @@ function ProfilePage() {
             const payload = JSON.parse(atob(token.split('.')[1]));
             const userId = payload.id;
 
-            const res = await fetch(`http://localhost:5000/api/users/${userId}`, {
+            const res = await fetch(`${API_URL}/api/users/${userId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -137,7 +138,7 @@ function ProfilePage() {
                 return;
             }
             
-            const res = await fetch('http://localhost:5000/api/users/feedback', {
+            const res = await fetch(`${API_URL}/api/users/feedback`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
