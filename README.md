@@ -1,12 +1,30 @@
-# React + Vite
+# EduKids Learning Application - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive educational web application designed for children to learn alphabets, words, animals, and daily activities through engaging content.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Visit EduKids](https://edu-kids-learning-application-front.vercel.app)
 
-## Expanding the ESLint configuration
+## Related Repositories
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Backend Repository: https://github.com/Prabhath2205/EduKids-learning-application-backend
+- Backend API: https://edukids-backend.onrender.com
+
+## Tech Stack
+
+- React 18
+- Vite
+- React Router DOM
+- CSS3
+- React Icons
+
+## Features
+
+- User authentication (Login/Register)
+- Parent and Admin login portals
+- Protected routes for authenticated users
+- Interactive learning modules
+- User profile management
+- Feedback submission system
+- Responsive design
