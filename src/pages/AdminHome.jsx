@@ -7,10 +7,10 @@ import dailyImage from "../assets/daily-image.png";
 import "../style/AdminHome.css"; // ✅ ensure correct path
 
 const subjects = [
-  { title: "Alphabets", image: alphabetImage, pageLink: "/alphabets", editable: false },
+  { title: "Alphabets", image: alphabetImage, pageLink: null, editable: false },
   { title: "Words", image: wordsImage, pageLink: "/admin/words", editable: true },
-  { title: "Animals", image: animalsImage, pageLink: "/animals", editable: true },
-  { title: "Daily Activities", image: dailyImage, pageLink: "/daily", editable: true },
+  { title: "Animals", image: animalsImage, pageLink: null, editable: false },
+  { title: "Daily Activities", image: dailyImage, pageLink: null, editable: false },
 ];
 
 function AdminHome() {

@@ -1,31 +1,27 @@
-// components/SubjectCardCMS.jsx
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./SubjectCardCMS.css";
 
-function SubjectCardCMS({ title, imageSrc, pageLink, isEditable }) {
+const SubjectCardCMS = ({ title, imageSrc, pageLink, isEditable, disabled }) => {
   const navigate = useNavigate();
 
+  const handleClick = () => {
+    if (!disabled && pageLink) {
+      navigate(pageLink);
+    }
+  };
+
   return (
-    <div className="subject-card-cms">
-      <img
-        src={imageSrc}
-        alt={title}
-        className="subject-image-cms"
-        onClick={() => navigate(pageLink)}
-      />
-      <h3 className="subject-title-cms">{title}</h3>
-      {isEditable && (
-        <button
-          className="btn-edit-cms"
-          onClick={() => navigate(pageLink)}
-        >
-          Edit
-        </button>
-      )}
+    <div 
+      className={`subject-card-cms ${disabled ? 'disabled' : ''}`} 
+      onClick={handleClick}
+      style={{ cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? 0.5 : 1 }}
+    >
+      <img src={imageSrc} alt={title} />
+      <h3>{title}</h3>
+      {isEditable && <span className="edit-badge">Edit</span>}
     </div>
   );
-}
-
+};
 
 export default SubjectCardCMS;

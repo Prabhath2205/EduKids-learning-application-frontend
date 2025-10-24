@@ -17,7 +17,6 @@ function ProfilePage() {
     const [feedbackText, setFeedbackText] = useState("");
     const [error, setError] = useState("");
 
-    // Fetch user data when component mounts
     useEffect(() => {
         fetchUserProfile();
     }, []);
@@ -30,7 +29,6 @@ function ProfilePage() {
                 return;
             }
 
-            // Decode token to get user ID
             const payload = JSON.parse(atob(token.split('.')[1]));
             const userId = payload.id;
 
@@ -125,12 +123,21 @@ function ProfilePage() {
     };
     
     const handleSendFeedback = async () => {
-        if (feedbackText.trim() === "") return;
+        if (feedbackText.trim() === "") {
+            alert('Please enter your feedback before sending.');
+            return;
+        }
 
         try {
             const token = localStorage.getItem('token');
             
-            const res = await fetch('http://localhost:5000/api/feedback', {
+            if (!token) {
+                alert('You must be logged in to send feedback');
+                navigate('/login');
+                return;
+            }
+            
+            const res = await fetch('http://localhost:5000/api/users/feedback', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -140,10 +147,12 @@ function ProfilePage() {
             });
 
             if (!res.ok) {
-                throw new Error('Failed to send feedback');
+                const errorData = await res.json();
+                throw new Error(errorData.message || 'Failed to send feedback');
             }
 
-            alert('Feedback sent successfully!');
+            const result = await res.json();
+            alert('Feedback sent successfully! Thank you for your input.');
             setFeedbackText("");
             setIsFeedbackOpen(false);
         } catch (err) {

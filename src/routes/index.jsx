@@ -26,6 +26,7 @@ import Feedback from '../components/Feedback';
 import AdminHome from '../pages/AdminHome';
 import AdminWords from '../pages/AdminWords';
 import LoggedInRedirect from './LoggedInRedirect';
+import AdminRedirect from './AdminRedirect';
 
 const AppRoutes = () => {
   return (
@@ -89,6 +90,7 @@ const AppRoutes = () => {
         <Route path="feedback" element={<Feedback />} />
         <Route path="content" element={<AdminHome />} />
         <Route path="words" element={<AdminWords />} />
+        
       </Route>
 
       {/* ========== FALLBACK ROUTE ========== */}
