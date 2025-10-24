@@ -1,39 +1,38 @@
-import React from 'react';
-import SubjectCard from '../components/subjectcard'; // Import the reusable card
-import '../style/home.css'; // External CSS for the page
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import SubjectCard from '../components/subjectcard';
+import '../style/home.css';
 
-// --- TODO: Replace these with your actual image paths ---
 import alphabetImage from '../assets/alphabets-image.png';
 import wordsImage from '../assets/words-image.png';
 import animalsImage from '../assets/animals-image.png';
 import dailyImage from '../assets/daily-image.png';
 
-// You can get this data from an API, but for now, it's an array
 const subjectData = [
   {
     title: "Alphabets",
-    description: "Cute puppies, friendly cats, jungle animals, and farm friends waiting to be colored!",
-    pageCount: "24",
+    description: "Learn Malayalam alphabets with fun sounds and visuals!",
+    pageCount: "56",
     imageSrc: alphabetImage,
-    startLink: "/alphabets" // Example link
+    startLink: "/alphabets"
   },
   {
     title: "Words",
-    description: "Cute puppies, friendly cats, jungle animals, and farm friends waiting to be colored!",
+    description: "Explore common words with pictures and pronunciation!",
     pageCount: "24",
     imageSrc: wordsImage,
     startLink: "/ViewWords"
   },
   {
     title: "Animals",
-    description: "Cute puppies, friendly cats, jungle animals, and farm friends waiting to be colored!",
+    description: "Discover animals with colorful images and sounds!",
     pageCount: "24",
     imageSrc: animalsImage,
     startLink: "/animals"
   },
   {
     title: "Daily Activities",
-    description: "Cute puppies, friendly cats, jungle animals, and farm friends waiting to be colored!",
+    description: "Learn about everyday activities in a fun way!",
     pageCount: "24",
     imageSrc: dailyImage,
     startLink: "/daily"
@@ -41,12 +40,59 @@ const subjectData = [
 ];
 
 function Home() {
+  const navigate = useNavigate();
+  const [userName, setUserName] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchUserName();
+  }, []);
+
+  const fetchUserName = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        navigate('/login');
+        return;
+      }
+
+      // Decode token to get user ID
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const userId = payload.id;
+
+      const res = await fetch(`http://localhost:5000/api/users/${userId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to fetch user data');
+      }
+
+      const data = await res.json();
+      setUserName(data.childname);
+      setLoading(false);
+    } catch (err) {
+      console.error('Error fetching user:', err);
+      setUserName('Guest'); // Fallback
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="home-page-container">
+        <h1 className="welcome-heading">Loading...</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="home-page-container">
-      <h1 className="welcome-heading">HI JOHNNY !</h1>
+      <h1 className="welcome-heading">HI {userName.toUpperCase()}!</h1>
 
       <div className="subject-grid">
-        {/* We map over the data array to create a card for each item */}
         {subjectData.map((subject) => (
           <SubjectCard
             key={subject.title}

@@ -25,6 +25,7 @@ import Users from '../components/Users';
 import Feedback from '../components/Feedback';
 import AdminHome from '../pages/AdminHome';
 import AdminWords from '../pages/AdminWords';
+import LoggedInRedirect from './LoggedInRedirect';
 
 const AppRoutes = () => {
   return (
@@ -32,7 +33,7 @@ const AppRoutes = () => {
       {/* ========== PUBLIC ROUTES (with Header & Footer) ========== */}
       {/* About is the landing page */}
       <Route path="/" element={<PublicLayout><About /></PublicLayout>} />
-      <Route path="/about" element={<PublicLayout><About /></PublicLayout>} />
+      <Route path="/about" element={<LoggedInRedirect><PublicLayout><About /></PublicLayout></LoggedInRedirect>} />
       <Route path="/login" element={<PublicLayout><Login /></PublicLayout>} />
       
       {/* Admin Login - No header/footer */}

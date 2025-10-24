@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // CSS is embedded directly inside the component using a <style> tag.
 const styles = `
@@ -163,6 +164,7 @@ const styles = `
 
 
 function Login() {
+  const navigate = useNavigate(); 
   const [isLoginView, setIsLoginView] = useState(true);
 
   // Form state for signup
@@ -235,24 +237,25 @@ function Login() {
 
   // Login submit
   const handleLogin = async () => {
-    setError("");
-    try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(loginData),
-      });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Login failed");
+  setError("");
+  try {
+    const res = await fetch("http://localhost:5000/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(loginData),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || "Login failed");
 
-      localStorage.setItem('token', data.token);
-      navigate('/home')
-      alert(`Login successful! Welcome ${data.role}`);
-      // redirect to dashboard page if needed
-    } catch (err) {
-      setError(err.message);
-    }
-  };
+    localStorage.setItem("token", data.token);
+    
+    // ✅ ADD THIS LINE - Redirect to home after login
+    navigate('/home');
+    
+  } catch (err) {
+    setError(err.message);
+  }
+};
 
   return (
     <>

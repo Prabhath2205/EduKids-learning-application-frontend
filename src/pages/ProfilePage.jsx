@@ -1,59 +1,186 @@
-import React, { useState } from 'react';
-import '../style/ProfilePage.css'; // External CSS for styling
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../style/ProfilePage.css';
 
-// Importing icons from react-icons
 import { 
     FaUserEdit, FaTrashAlt, FaSignOutAlt, FaPaperPlane, FaTimes, 
     FaUserCircle, FaEnvelope, FaPhoneAlt, FaUserTag, FaBirthdayCake 
 } from 'react-icons/fa';
 
-// --- MAIN PROFILE PAGE COMPONENT ---
 function ProfilePage() {
-    // We use the data structure you provided as the initial state
-    const [userData, setUserData] = useState({
-        childname: "Johnny",
-        email: "johnny.doe@example.com",
-        phonenumber: "123-456-7890",
-        role: "Parent",
-        dob: "2018-05-15",
-    });
-
+    const navigate = useNavigate();
+    const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(true);
     const [isEditing, setIsEditing] = useState(false);
-    const [editableData, setEditableData] = useState(userData);
+    const [editableData, setEditableData] = useState({});
     const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
     const [feedbackText, setFeedbackText] = useState("");
+    const [error, setError] = useState("");
 
-    // Handle input changes during edit mode
+    // Fetch user data when component mounts
+    useEffect(() => {
+        fetchUserProfile();
+    }, []);
+
+    const fetchUserProfile = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                navigate('/login');
+                return;
+            }
+
+            // Decode token to get user ID
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            const userId = payload.id;
+
+            const res = await fetch(`http://localhost:5000/api/users/${userId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (!res.ok) {
+                throw new Error('Failed to fetch profile');
+            }
+
+            const data = await res.json();
+            setUserData(data);
+            setEditableData(data);
+            setLoading(false);
+        } catch (err) {
+            console.error('Error fetching profile:', err);
+            setError(err.message);
+            setLoading(false);
+        }
+    };
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setEditableData(prev => ({ ...prev, [name]: value }));
     };
 
-    // Save changes and exit edit mode
-    const handleSaveChanges = () => {
-        setUserData(editableData);
-        setIsEditing(false);
-        console.log("User data saved!");
+    const handleSaveChanges = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            const userId = payload.id;
+
+            const res = await fetch(`http://localhost:5000/api/users/${userId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify(editableData)
+            });
+
+            if (!res.ok) {
+                throw new Error('Failed to update profile');
+            }
+
+            const updatedData = await res.json();
+            setUserData(updatedData.user);
+            setIsEditing(false);
+            alert('Profile updated successfully!');
+        } catch (err) {
+            console.error('Error updating profile:', err);
+            alert('Failed to update profile: ' + err.message);
+        }
     };
 
-    // --- Action Handlers ---
     const handleLogout = () => {
-        console.log("User logged out.");
-        // In a real app, you would clear auth tokens and redirect here
+        localStorage.removeItem('token');
+        navigate('/login');
     };
 
-    const handleDeleteAccount = () => {
-        console.log("User account deletion initiated.");
-        // In a real app, this would likely open a confirmation modal
-        // and then make an API call to delete the user.
+    const handleDeleteAccount = async () => {
+        if (!window.confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+            return;
+        }
+
+        try {
+            const token = localStorage.getItem('token');
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            const userId = payload.id;
+
+            const res = await fetch(`http://localhost:5000/api/users/${userId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (!res.ok) {
+                throw new Error('Failed to delete account');
+            }
+
+            localStorage.removeItem('token');
+            alert('Account deleted successfully');
+            navigate('/login');
+        } catch (err) {
+            console.error('Error deleting account:', err);
+            alert('Failed to delete account: ' + err.message);
+        }
     };
     
-    const handleSendFeedback = () => {
+    const handleSendFeedback = async () => {
         if (feedbackText.trim() === "") return;
-        console.log("Feedback submitted:", feedbackText);
-        setFeedbackText("");
-        setIsFeedbackOpen(false);
+
+        try {
+            const token = localStorage.getItem('token');
+            
+            const res = await fetch('http://localhost:5000/api/feedback', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ message: feedbackText })
+            });
+
+            if (!res.ok) {
+                throw new Error('Failed to send feedback');
+            }
+
+            alert('Feedback sent successfully!');
+            setFeedbackText("");
+            setIsFeedbackOpen(false);
+        } catch (err) {
+            console.error('Error sending feedback:', err);
+            alert('Failed to send feedback: ' + err.message);
+        }
     };
+
+    if (loading) {
+        return (
+            <div style={{ 
+                display: 'flex', 
+                justifyContent: 'center', 
+                alignItems: 'center', 
+                minHeight: '100vh',
+                fontSize: '18px' 
+            }}>
+                Loading profile...
+            </div>
+        );
+    }
+
+    if (error || !userData) {
+        return (
+            <div style={{ 
+                display: 'flex', 
+                justifyContent: 'center', 
+                alignItems: 'center', 
+                minHeight: '100vh',
+                flexDirection: 'column',
+                gap: '20px'
+            }}>
+                <p>Failed to load profile</p>
+                <button onClick={() => navigate('/login')}>Go to Login</button>
+            </div>
+        );
+    }
 
     return (
         <div className="profile-page-container">
@@ -69,7 +196,12 @@ function ProfilePage() {
                         <FaEnvelope className="detail-icon" />
                         <label>Email</label>
                         {isEditing ? (
-                            <input type="email" name="email" value={editableData.email} onChange={handleInputChange} />
+                            <input 
+                                type="email" 
+                                name="email" 
+                                value={editableData.email} 
+                                onChange={handleInputChange} 
+                            />
                         ) : (
                             <span>{userData.email}</span>
                         )}
@@ -78,7 +210,12 @@ function ProfilePage() {
                         <FaPhoneAlt className="detail-icon" />
                         <label>Phone</label>
                         {isEditing ? (
-                            <input type="tel" name="phonenumber" value={editableData.phonenumber} onChange={handleInputChange} />
+                            <input 
+                                type="tel" 
+                                name="phonenumber" 
+                                value={editableData.phonenumber} 
+                                onChange={handleInputChange} 
+                            />
                         ) : (
                             <span>{userData.phonenumber}</span>
                         )}
@@ -87,7 +224,12 @@ function ProfilePage() {
                         <FaBirthdayCake className="detail-icon" />
                         <label>Date of Birth</label>
                         {isEditing ? (
-                            <input type="date" name="dob" value={editableData.dob} onChange={handleInputChange} />
+                            <input 
+                                type="date" 
+                                name="dob" 
+                                value={editableData.dob ? new Date(editableData.dob).toISOString().split('T')[0] : ''} 
+                                onChange={handleInputChange} 
+                            />
                         ) : (
                             <span>{new Date(userData.dob).toLocaleDateString()}</span>
                         )}
@@ -117,7 +259,7 @@ function ProfilePage() {
                 </div>
             </div>
 
-            {/* --- Feedback Modal --- */}
+            {/* Feedback Modal */}
             {isFeedbackOpen && (
                 <div className="feedback-overlay">
                     <div className="feedback-modal">
