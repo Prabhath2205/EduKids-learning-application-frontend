@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import API_URL from './config';
+import API_URL from '../config';
 
 // CSS is embedded directly inside the component using a <style> tag.
 const styles = `

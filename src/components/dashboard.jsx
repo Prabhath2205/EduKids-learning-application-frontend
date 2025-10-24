@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './dashboard.css';
 import { FaBox, FaMoneyBillWave, FaHourglassHalf } from 'react-icons/fa';
 import { MdOutlineShowChart } from 'react-icons/md';
-import API_URL from './config';
+import API_URL from '../config';
 
 const Dashboard = () => {
   const [stats, setStats] = useState({

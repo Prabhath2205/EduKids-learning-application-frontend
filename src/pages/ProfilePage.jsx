@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/ProfilePage.css';
-import API_URL from './config';
+import API_URL from '../config';
 
 import { 
     FaUserEdit, FaTrashAlt, FaSignOutAlt, FaPaperPlane, FaTimes, 

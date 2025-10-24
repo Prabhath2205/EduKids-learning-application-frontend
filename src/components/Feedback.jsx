@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Feedback.css';
-import API_URL from './config';
+import API_URL from '../config';
 
 const Feedback = () => {
     const [feedbacks, setFeedbacks] = useState([]);

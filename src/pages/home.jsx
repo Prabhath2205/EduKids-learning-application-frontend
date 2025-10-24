@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SubjectCard from '../components/subjectcard';
 import '../style/home.css';
-import API_URL from './config';
+import API_URL from '../config';
 
 import alphabetImage from '../assets/alphabets-image.png';
 import wordsImage from '../assets/words-image.png';
