@@ -58,16 +58,7 @@ const AdminSidebar = () => {
 
         {/* Bottom Section */}
         <div className="admin-sidebar-bottom">
-          <NavLink
-            to="/admin/profile"
-            className={({ isActive }) =>
-              `admin-nav-item ${isActive ? "active" : ""}`
-            }
-          >
-            <FaUserCircle className="admin-nav-icon" /> View Profile
-          </NavLink>
-
-          <button className="admin-nav-item logout-btn" onClick={handleLogout}>
+              <button className="admin-nav-item logout-btn" onClick={handleLogout}>
             <FaSignOutAlt className="admin-nav-icon" /> Logout
           </button>
         </div>

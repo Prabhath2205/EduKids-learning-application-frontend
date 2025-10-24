@@ -104,21 +104,30 @@ function AdminLogin() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    
-    // Simple validation (you can make this more robust)
+    setError('');
+
     if (!username || !password) {
       setError('Please enter both username and password');
       return;
     }
 
-    // For now, accept any credentials (you can add real validation later)
-    // Store admin token in localStorage
-    localStorage.setItem('adminToken', 'admin-authenticated');
-    
-    // Navigate to admin dashboard
-    navigate('/admin/dashboard');
+    try {
+      const res = await fetch('http://localhost:5000/api/auth/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || 'Login failed');
+
+      // Store real JWT token
+      localStorage.setItem('adminToken', data.token);
+      navigate('/admin/dashboard');
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
@@ -130,28 +139,28 @@ function AdminLogin() {
           <p>Please enter your credentials to proceed.</p>
           <form onSubmit={handleLogin}>
             <div className="input-group">
-              <label htmlFor="username">Username</label>
+              <label htmlFor="admin-username">Username</label>
               <input
-                id="username"
+                id="admin-username"
                 type="text"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="e.g., admin"
+                onChange={e => setUsername(e.target.value)}
+                placeholder="Username"
               />
             </div>
             <div className="input-group">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="admin-password">Password</label>
               <input
-                id="password"
+                id="admin-password"
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
+                onChange={e => setPassword(e.target.value)}
+                placeholder="Password"
               />
             </div>
             {error && <p className="error-message">{error}</p>}
             <button type="submit" className="login-button">
-              Sign In
+              Login
             </button>
           </form>
         </div>
