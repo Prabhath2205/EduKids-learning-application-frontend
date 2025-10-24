@@ -9,7 +9,6 @@ An interactive educational web application designed for children to learn alphab
 ## Related Repositories
 
 - Backend Repository: https://github.com/Prabhath2205/EduKids-learning-application-backend
-- Backend API: https://edukids-backend.onrender.com
 
 ## Tech Stack
 
